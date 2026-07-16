@@ -1,12 +1,10 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
+import { MockReservationService } from './core/services/mock-Reservation.service';
 
-export const appConfig: ApplicationConfig = {
+export const appConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes), provideClientHydration()
-  ]
+    ...(environment.useMock ? [MockReservationService] : []),
+    // répétez le même schéma pour SalleService, PackService, CreneauService
+  ],
 };
