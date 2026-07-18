@@ -1,0 +1,13 @@
+import { environment } from '../environments/environment';
+import { ReservationService } from './core/services/reservation.service';
+import { MockReservationService } from './core/services/mock-reservation.service';
+ 
+export const appConfig = {
+  providers: [
+    {
+      provide: ReservationService,
+      useClass: environment.useMock ? MockReservationService : ReservationService,
+    },
+    // répétez le même schéma pour SalleService, PackService, CreneauService
+  ],
+};
