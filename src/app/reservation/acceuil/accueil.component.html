@@ -1,0 +1,35 @@
+<section class="hero">
+  <div class="hero__text">
+    <p class="hero__eyebrow">TTES-ICG Academy</p>
+    <h1>Une salle, un créneau, votre événement</h1>
+    <p class="hero__lead">
+      Réservez une salle adaptée au nombre de participants,
+      choisissez vos créneaux de 4h, et laissez-nous confirmer
+      la disponibilité et le tarif.
+    </p>
+    <button class="btn-primary" (click)="demarrerDemande()">
+      Faire une demande de réservation
+    </button>
+  </div>
+  <div class="hero__motif">
+    <app-grille-motif [size]="220" />
+  </div>
+</section>
+
+<section class="etapes">
+  <div class="etape card">
+    <span class="etape__num mono">01</span>
+    <h3>Vous décrivez votre besoin</h3>
+    <p>Nombre de places, thème, créneaux souhaités.</p>
+  </div>
+  <div class="etape card">
+    <span class="etape__num mono">02</span>
+    <h3>Nous vérifions et fixons le tarif</h3>
+    <p>Disponibilité de la salle et prix confirmés sous 24h.</p>
+  </div>
+  <div class="etape card">
+    <span class="etape__num mono">03</span>
+    <h3>Vous réglez, on vous accueille</h3>
+    <p>Paiement en une ou plusieurs fois, jusqu'au jour J.</p>
+  </div>
+</section>

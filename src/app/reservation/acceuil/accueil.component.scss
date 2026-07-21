@@ -1,0 +1,54 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-5);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  color: var(--gold-dark);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-2);
+}
+
+.hero__text h1 {
+  font-size: 40px;
+  line-height: 1.15;
+  max-width: 480px;
+}
+
+.hero__lead {
+  color: var(--text-muted);
+  max-width: 440px;
+  margin-bottom: var(--space-4);
+}
+
+.hero__motif { opacity: 0.9; flex-shrink: 0; }
+
+.etapes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  max-width: 1080px;
+  margin: 0 auto var(--space-6);
+  padding: 0 var(--space-5);
+}
+
+.etape__num {
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .hero { flex-direction: column; text-align: center; }
+  .hero__motif { display: none; }
+  .etapes { grid-template-columns: 1fr; }
+}
+

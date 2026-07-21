@@ -1,0 +1,22 @@
+.page { max-width: 900px; margin: 0 auto; padding: var(--space-5); }
+
+.entete {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+
+  form { display: flex; flex-direction: column; gap: var(--space-2); }
+}
+
+.restant--paye { color: var(--success); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .grille { grid-template-columns: 1fr; }
+}

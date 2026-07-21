@@ -1,0 +1,31 @@
+<div class="page">
+  <h1>Calendrier des salles</h1>
+
+  <div class="onglets">
+    @for (salle of salles(); track salle.id) {
+      <button class="btn-secondary" [class.actif]="salleSelectionnee() === salle.id" (click)="selectionner(salle.id)">
+        {{ salle.nom }}
+      </button>
+    }
+  </div>
+
+  <div class="grille-calendrier card">
+    <div class="grille-calendrier__entete">
+      <span></span>
+      @for (tranche of tranches; track tranche) { <span>{{ tranche }}h</span> }
+    </div>
+    @for (jour of joursDuMois; track jour) {
+      <div class="grille-calendrier__ligne">
+        <span class="grille-calendrier__jour">{{ jour }}</span>
+        @for (tranche of tranches; track tranche) {
+          <span class="case" [class.case--occupee]="estOccupe(jour, tranche)"></span>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="legende">
+    <span class="case"></span> Libre
+    <span class="case case--occupee"></span> Occupé
+  </div>
+</div>

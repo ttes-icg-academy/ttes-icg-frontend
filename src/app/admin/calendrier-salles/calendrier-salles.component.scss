@@ -1,0 +1,36 @@
+.page { max-width: 700px; margin: 0 auto; padding: var(--space-5); }
+
+.onglets { display: flex; gap: var(--space-2); margin-bottom: var(--space-4); flex-wrap: wrap; }
+.actif { background: var(--navy); color: white; }
+
+.grille-calendrier__entete,
+.grille-calendrier__ligne {
+  display: grid;
+  grid-template-columns: 32px repeat(3, 1fr);
+  gap: var(--space-2);
+  align-items: center;
+  padding: 4px 0;
+}
+
+.grille-calendrier__entete { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+.grille-calendrier__jour { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
+
+.case {
+  height: 22px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.case--occupee { background: var(--gold); border-color: var(--gold-dark); }
+
+.legende {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: 13px;
+  color: var(--text-muted);
+
+  .case { display: inline-block; width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
+}

@@ -1,3 +1,9 @@
+export * from './salle.model';
+export * from './pack.model';
+export * from './reservation.model';
+export * from './creneau.model';
+
+
 export type RoleUtilisateur = 'client' | 'admin';
 
 export interface User {
@@ -52,3 +58,4 @@ export interface Creneau {
   jour: string; // ISO date
   trancheHoraire: TrancheHoraire;
 }
+

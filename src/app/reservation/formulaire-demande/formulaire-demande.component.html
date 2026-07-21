@@ -1,0 +1,69 @@
+<div class="page">
+  <h1>Votre demande de réservation</h1>
+
+  <form [formGroup]="form" (ngSubmit)="envoyer()" class="card form">
+    <div class="form__section">
+      <h3>Vos coordonnées</h3>
+      <label for="nom">Nom complet</label>
+      <input id="nom" formControlName="clientNom" placeholder="Votre nom" />
+
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="clientEmail" placeholder="vous@exemple.com" />
+
+      <label for="tel">Téléphone</label>
+      <input id="tel" formControlName="clientTelephone" placeholder="6XX XX XX XX" />
+    </div>
+
+    <div class="form__section">
+      <h3>Votre événement</h3>
+      <label for="theme">Thème de l'événement</label>
+      <input id="theme" formControlName="themeEvenement" placeholder="Ex : Séminaire d'entreprise" />
+
+      <label for="places">Nombre de places</label>
+      <input id="places" type="number" formControlName="nbPlacesDemandees" min="1" />
+
+      <label for="salle">Salle</label>
+      <select id="salle" formControlName="salleId">
+        <option [value]="null" disabled>Choisir une salle compatible</option>
+        @for (salle of sallesCompatibles(); track salle.id) {
+          <option [value]="salle.id">{{ salle.nom }} (jusqu'à {{ salle.capacite }} places)</option>
+        }
+      </select>
+      @if (sallesCompatibles().length === 0) {
+        <p class="form__hint">Aucune salle ne convient pour ce nombre de places pour le moment.</p>
+      }
+
+      <label for="pack">Pack tarifaire indicatif</label>
+      <select id="pack" formControlName="packId">
+        <option [value]="null">Autre / à négocier</option>
+        @for (pack of packs(); track pack.id) {
+          <option [value]="pack.id">{{ pack.nom }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form__section">
+      <h3>Créneaux souhaités</h3>
+      @for (creneau of creneauxArray.controls; track $index) {
+        <div class="creneau-row" [formGroup]="$any(creneau)">
+          <input type="date" formControlName="jour" />
+          <select formControlName="trancheHoraire">
+            @for (tranche of tranches; track tranche) {
+              <option [value]="tranche">{{ tranche }}h</option>
+            }
+          </select>
+          <button type="button" class="btn-secondary" (click)="retirerCreneau($index)">Retirer</button>
+        </div>
+      }
+      <button type="button" class="btn-secondary" (click)="ajouterCreneau()">+ Ajouter un créneau</button>
+    </div>
+
+    @if (erreur()) {
+      <p class="form__erreur">{{ erreur() }}</p>
+    }
+
+    <button type="submit" class="btn-primary" [disabled]="envoiEnCours()">
+      @if (envoiEnCours()) { Envoi en cours... } @else { Envoyer ma demande }
+    </button>
+  </form>
+</div>

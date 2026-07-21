@@ -1,0 +1,56 @@
+<div class="page">
+  @if (reservation(); as r) {
+    <div class="entete">
+      <h1>{{ r.themeEvenement }}</h1>
+      <span class="badge" [class.badge-attente]="r.statut === 'en_attente_validation'"
+                           [class.badge-confirmee]="r.statut === 'confirmee'"
+                           [class.badge-annulee]="r.statut === 'annulee'">
+        {{ r.statut }}
+      </span>
+    </div>
+
+    <div class="grille">
+      <div class="card">
+        <h3>Informations</h3>
+        <p><strong>Places demandées :</strong> {{ r.nbPlacesDemandees }}</p>
+        <p><strong>Nombre de jours :</strong> {{ r.nbJours }}</p>
+      </div>
+
+      @if (r.statut === 'en_attente_validation') {
+        <form [formGroup]="formValidation" (ngSubmit)="valider()" class="card">
+          <h3>Valider et fixer le prix</h3>
+          <label for="montant">Montant total (FCFA)</label>
+          <input id="montant" type="number" formControlName="montantTotal" />
+          <button type="submit" class="btn-primary">Confirmer la réservation</button>
+          <button type="button" class="btn-secondary" (click)="annuler()">Refuser la demande</button>
+        </form>
+      }
+
+      @if (r.statut === 'confirmee') {
+        <div class="card">
+          <h3>Paiement</h3>
+          <p class="mono">Total : {{ r.montantTotal }} FCFA</p>
+          <p class="mono">Versé : {{ r.montantVerse }} FCFA</p>
+          <p class="mono" [class.restant--paye]="r.montantRestant === 0">
+            Restant : {{ r.montantRestant }} FCFA
+          </p>
+
+          @if (r.montantRestant! > 0) {
+            <form [formGroup]="formPaiement" (ngSubmit)="ajouterPaiement()">
+              <label for="versement">Ajouter un versement</label>
+              <input id="versement" type="number" formControlName="montant" />
+              <input type="date" formControlName="datePaiement" />
+              <select formControlName="modePaiement">
+                <option value="especes">Espèces</option>
+                <option value="mobile_money">Mobile Money</option>
+                <option value="virement">Virement</option>
+              </select>
+              <button type="submit" class="btn-primary">Enregistrer le versement</button>
+            </form>
+          }
+          <button type="button" class="btn-secondary" (click)="annuler()">Annuler la réservation</button>
+        </div>
+      }
+    </div>
+  }
+</div>

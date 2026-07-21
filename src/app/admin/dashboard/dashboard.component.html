@@ -1,0 +1,35 @@
+<div class="page">
+  <h1>Tableau de bord</h1>
+
+  <div class="stats">
+    <div class="card stat">
+      <p class="stat__label">Demandes en attente</p>
+      <p class="stat__valeur">{{ enAttente().length }}</p>
+    </div>
+    <div class="card stat">
+      <p class="stat__label">Réservations confirmées</p>
+      <p class="stat__valeur">{{ confirmees().length }}</p>
+    </div>
+    <div class="card stat">
+      <p class="stat__label">Total encaissé</p>
+      <p class="stat__valeur mono">{{ totalEncaisse() }} FCFA</p>
+    </div>
+    <div class="card stat">
+      <p class="stat__label">Total restant dû</p>
+      <p class="stat__valeur mono stat__valeur--gold">{{ totalRestant() }} FCFA</p>
+    </div>
+  </div>
+
+  <h2>Demandes en attente</h2>
+  <div class="liste">
+    @for (r of enAttente(); track r.id) {
+      <a [routerLink]="['/admin/reservations', r.id]" class="card ligne">
+        <span>{{ r.themeEvenement }}</span>
+        <span class="badge badge-attente">En attente</span>
+      </a>
+    }
+    @if (enAttente().length === 0) {
+      <p class="vide">Aucune demande en attente pour le moment.</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="page">
+  <h1>Réservations</h1>
+
+  <div class="filtres">
+    <button class="btn-secondary" [class.actif]="filtreStatut() === 'toutes'" (click)="changerFiltre('toutes')">Toutes</button>
+    <button class="btn-secondary" [class.actif]="filtreStatut() === 'en_attente_validation'" (click)="changerFiltre('en_attente_validation')">En attente</button>
+    <button class="btn-secondary" [class.actif]="filtreStatut() === 'confirmee'" (click)="changerFiltre('confirmee')">Confirmées</button>
+    <button class="btn-secondary" [class.actif]="filtreStatut() === 'annulee'" (click)="changerFiltre('annulee')">Annulées</button>
+  </div>
+
+  <div class="liste">
+    @for (r of reservationsFiltrees(); track r.id) {
+      <a [routerLink]="['/admin/reservations', r.id]" class="card ligne">
+        <div>
+          <p class="ligne__titre">{{ r.themeEvenement }}</p>
+          <p class="ligne__meta">{{ r.nbPlacesDemandees }} places</p>
+        </div>
+        <span class="badge" [class.badge-attente]="r.statut === 'en_attente_validation'"
+                             [class.badge-confirmee]="r.statut === 'confirmee'"
+                             [class.badge-annulee]="r.statut === 'annulee'">
+          {{ r.statut }}
+        </span>
+      </a>
+    }
+    @if (reservationsFiltrees().length === 0) {
+      <p class="vide">Aucune réservation pour ce filtre.</p>
+    }
+  </div>
+</div>

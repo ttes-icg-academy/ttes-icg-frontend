@@ -1,0 +1,20 @@
+<div class="login-page">
+  <form [formGroup]="form" (ngSubmit)="connecter()" class="card login-card">
+    <p class="login-card__eyebrow mono">TTES-ICG · ESPACE ADMIN</p>
+    <h1>Connexion</h1>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" />
+
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" formControlName="password" />
+
+    @if (erreur()) {
+      <p class="form__erreur">{{ erreur() }}</p>
+    }
+
+    <button type="submit" class="btn-primary" [disabled]="chargement()">
+      @if (chargement()) { Connexion... } @else { Se connecter }
+    </button>
+  </form>
+</div>

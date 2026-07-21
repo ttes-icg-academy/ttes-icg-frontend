@@ -1,0 +1,15 @@
+<div class="page">
+  @if (reservation(); as r) {
+    <div class="card confirmation">
+      <span class="badge badge-attente">En attente de validation</span>
+      <h1>Demande envoyée</h1>
+      <p class="reference mono">{{ referenceFormatee(r.id) }}</p>
+      <p class="confirmation__texte">
+        Nous avons bien reçu votre demande pour
+        « {{ r.themeEvenement }} ». Notre équipe vérifie la disponibilité
+        et vous recontacte sous 24h avec le tarif définitif.
+      </p>
+      <a routerLink="/" class="btn-secondary">Retour à l'accueil</a>
+    </div>
+  }
+</div>

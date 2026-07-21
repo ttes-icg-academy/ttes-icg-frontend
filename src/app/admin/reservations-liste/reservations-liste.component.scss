@@ -1,0 +1,24 @@
+.page { max-width: 900px; margin: 0 auto; padding: var(--space-5); }
+
+.filtres {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+
+  .actif { background: var(--navy); color: white; }
+}
+
+.liste { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.ligne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.ligne__titre { font-weight: 500; margin: 0; }
+.ligne__meta { color: var(--text-muted); font-size: 13px; margin: 2px 0 0; }
+
+.vide { color: var(--text-muted); font-style: italic; }

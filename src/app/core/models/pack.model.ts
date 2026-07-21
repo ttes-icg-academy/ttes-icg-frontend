@@ -1,7 +1,8 @@
+
 export interface Pack {
-  id: string;
+  id: number;
   nom: string;
   description: string;
-  prix: number;
-  duree?: string;
+  nbPlaces: number;
+  prixTotalIndicatif: number;
 }

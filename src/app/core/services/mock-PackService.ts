@@ -11,7 +11,7 @@ export class MockPackService {
     return of(this.packs);
   }
 
-  get(id: string) {
+  get(id: number) {
     return of(this.packs.find(pack => pack.id === id));
   }
 

@@ -1,0 +1,26 @@
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-5);
+}
+
+.form { display: flex; flex-direction: column; gap: var(--space-5); }
+
+.form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  h3 { font-size: 17px; margin-bottom: var(--space-1); }
+}
+
+.form__hint { color: var(--gold-dark); font-size: 14px; margin: 0; }
+.form__erreur { color: var(--danger); font-weight: 500; }
+
+.creneau-row {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+
+  input, select { flex: 1; }
+}
